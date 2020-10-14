@@ -23,4 +23,4 @@ app.get('/y',(req,res)=>{
     res.send('Helloooo')
 })
 
-app.listen(port)
+app.listen(process.env.PORT || port)
