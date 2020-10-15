@@ -19,7 +19,8 @@ client.connect(err => {
 
 
 
-app.get('/y',(req,res)=>{
+// 
+app.get('/',(req,res)=>{
     res.send('Helloooo')
 })
 
