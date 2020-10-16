@@ -1,0 +1,12 @@
+.program{
+    margin: 20px
+}
+.program-image{
+  object-fit:cover;
+  width:230px;
+  height:230px;
+}
+.card-body{
+    background-color: antiquewhite;
+}
+

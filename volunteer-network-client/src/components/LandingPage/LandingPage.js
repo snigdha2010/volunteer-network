@@ -1,15 +1,20 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useState } from 'react';
+import Program from '../Program/Program';
 
 const LandingPage = () => {
+    const [ programs , setPrograms ] = useState([]);
     useEffect(()=>{
-        fetch('https://snigdha-volunteer-app.herokuapp.com/')
-        .then(res => res.text())
-        .then(data => console.log(data))
+        fetch('http://localhost:9000/programs')
+        .then(res => res.json())
+        .then(data => setPrograms(data))
     },[])
     return (
-        <div>
-           This is landing page 
+        <div className = 'row' >
+           {
+               programs.map(program => <Program key={program._id} program = {program}></Program>)
+           }
         
         </div>
     );
