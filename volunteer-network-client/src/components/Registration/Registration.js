@@ -1,35 +1,56 @@
+
 import React, { useContext } from 'react';
+import { useForm } from "react-hook-form";
 import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { UserContext } from '../../App';
 
 const Registration = () => {
-    const { id } = useParams({})
-    const [ programs, setPrograms ] = useState([])
-    const [signedInUser, setSignedInUser] = useContext(UserContext);
-    useEffect(()=>{
-        fetch('http://localhost:9000/programs')
-        .then(res => res.json())
-        .then(data => setPrograms(data))
-    },[])
-    const newUser = programs.find(program=> program._id === id)
-    console.log(signedInUser)
+  
+  const { id } = useParams({})
+  const { register, handleSubmit, errors } = useForm();
+  const [signedInUser, setSignedInUser] = useContext(UserContext);
+  const onSubmit = data => {
+      console.log(data)
+      fetch('http://localhost:9000/addUser',{ 
+        method:'POST',
+        headers:{
+        "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(data =>{
+          console.log(data)
+      })
+  };
+//   useEffect(()=>{
+//       fetch('http://localhost:9000/programs')
+//       .then(res =>res.json())
+//       .then(data =>{
+//           console.log(data[0])
+//       })
+//   },[])
     return (
-        <div className = 'text-center'>
-            <input type="text" defaultValue={signedInUser.displayName} name="" id=""placeholder='Full Name'/>
-            <br/>
-            <input type="text" defaultValue={signedInUser.email} name="" id="" placeholder='Email'/>
-            <br/>
-            <input type="text" name="" id="" placeholder='Date'/>
-            <br/>
-            <input type="text" name="" id="" placeholder='Description'/>
-            <br/>
-            <input type="text" name="" id="" placeholder='Organize books at the library'/>
-            <br/>
-            <input type="submit" value="Registration" name="" id=""/>
-            
-        </div>
+        <div className='text-center'>
+            Registration
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input name="title" defaultValue={signedInUser.displayName} ref={register} placeholder='Full Name' />
+              <br/>
+              <input name="email" defaultValue={signedInUser.email}  ref={register({ required: true })} placeholder='Email'/>
+              {errors.email && <span>This field is required</span>}
+              <br/>
+              <input name="date" ref={register({ required: true })} placeholder='Date'/>
+              {errors.data && <span>This field is required</span>}
+              <br/>
+              <input name="description" ref={register({ required: true })} defaultValue="" placeholder='Description'/>
+              {errors.description && <span>This field is required</span>}
+             <br/>
+             <input name="organization" ref={register({ required: true })} defaultValue="" placeholder='Organization books at the library'/>
+              {errors.organization && <span>This field is required</span>}
+             <br/>
+             <input type="submit" />
+            </form>
+            </div>
     );
 };
 

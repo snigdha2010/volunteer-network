@@ -17,12 +17,12 @@ const Login = () => {
 
     
 
-  const [signedInUser, setSignedInUser] = useContext(UserContext);
     const [ user, setUser] = useState({
         name: '',
         password: '', 
         email: ''
     })
+    const [signedInUser, setSignedInUser] = useContext(UserContext);
     const [showLogin , setShowLogIn] = useState(false);
     const history = useHistory();
     const location = useLocation();
