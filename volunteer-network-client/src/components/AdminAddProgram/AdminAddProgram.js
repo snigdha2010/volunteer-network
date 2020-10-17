@@ -7,7 +7,7 @@ const AdminAddProgram = () => {
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => {
       console.log(data)
-      fetch('http://localhost:9000/addProgram',{ 
+      fetch('https://snigdha-volunteer-app.herokuapp.com/addProgram',{ 
         method:'POST',
         headers:{
         "Content-type": "application/json"
@@ -19,13 +19,7 @@ const AdminAddProgram = () => {
           console.log(data)
       })
   };
-//   useEffect(()=>{
-//       fetch('http://localhost:9000/programs')
-//       .then(res =>res.json())
-//       .then(data =>{
-//           console.log(data[0])
-//       })
-//   },[])
+
     return (
         <div className='text-center'>
             AddProgramform

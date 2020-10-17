@@ -1,17 +1,20 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from "react-hook-form";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { useState } from 'react';
 
 const Registration = () => {
   
   const { id } = useParams({})
   const { register, handleSubmit, errors } = useForm();
-  const [signedInUser, setSignedInUser] = useContext(UserContext);
+  const [ signedInUser, setSignedInUser] = useContext(UserContext);
+  const [ programs, setPrograms ] = useState([]);
+  const history = useHistory();
   const onSubmit = data => {
       console.log(data)
-      fetch('http://localhost:9000/addUser',{ 
+      fetch('https://snigdha-volunteer-app.herokuapp.com/addEvents',{ 
         method:'POST',
         headers:{
         "Content-type": "application/json"
@@ -20,21 +23,24 @@ const Registration = () => {
     })
       .then(res => res.json())
       .then(data =>{
+         history.push('/event-task')
           console.log(data)
       })
   };
-//   useEffect(()=>{
-//       fetch('http://localhost:9000/programs')
-//       .then(res =>res.json())
-//       .then(data =>{
-//           console.log(data[0])
-//       })
-//   },[])
+  useEffect(()=>{
+      fetch('https://snigdha-volunteer-app.herokuapp.com/programs')
+      .then(res =>res.json())
+      .then(data =>{
+          setPrograms(data)
+      })
+  },[])
+  const program = programs.find(pg => pg._id == id)
+  console.log(program)
     return (
         <div className='text-center'>
             Registration
             <form onSubmit={handleSubmit(onSubmit)}>
-              <input name="title" defaultValue={signedInUser.displayName} ref={register} placeholder='Full Name' />
+              <input name="title" defaultValue={program && program.title} ref={register} placeholder='Full Name' />
               <br/>
               <input name="email" defaultValue={signedInUser.email}  ref={register({ required: true })} placeholder='Email'/>
               {errors.email && <span>This field is required</span>}

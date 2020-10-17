@@ -1,0 +1,20 @@
+.task{
+    width: 500px;
+    height: 300px;
+    display: flex;
+    border: 1px solid saddlebrown;
+    background-color: white;
+    border-radius: 5px;
+    margin: 20px
+}
+.task img{
+    width: 150px;
+    height: 150px;
+    margin: auto 10px;
+}
+.task-detail{
+    margin:  auto 30px;
+}
+.cancel button{
+    margin:  250px 0;
+}

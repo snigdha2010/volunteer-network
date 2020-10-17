@@ -13,6 +13,7 @@ import Registration from './components/Registration/Registration';
 import Login from './components/Login/Login';
 import { createContext } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import EventTask from './components/EventTask/EventTask';
 
 export const UserContext = createContext();
 
@@ -36,6 +37,9 @@ function App() {
         <PrivateRoute path ='/register/:id'>
           <Registration/>
         </PrivateRoute>
+        <Route path = '/event-task'>
+          <EventTask/>
+        </Route>
         <Route path = '*'>
           <NoElementFound/>
         </Route>

@@ -58,7 +58,7 @@ const Login = () => {
             const newUser = {...user};
             setUser(newUser)
             setSignedInUser(res.user)
-            history.replace(from);
+            storeAuthToken()
         })
         .catch(function(error) {
             console.log(error.message);
@@ -80,18 +80,23 @@ const Login = () => {
               newUser.email = email;
               setUser(newUser)
               setSignedInUser(res.user);
-              history.replace(from);
+              storeAuthToken();
           })
           
           .catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            var email = error.email;
-            
+            console.log(error.message);   
           });
     }
     const handleCreateAccount = () =>{
         setShowLogIn(true)
+    }
+    const storeAuthToken = () =>{
+        firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+        .then(idToken=>{
+            sessionStorage.setItem('token',idToken);
+            history.replace(from);
+            console.log(idToken)
+        })
     }
     console.log(signedInUser)
     return (
