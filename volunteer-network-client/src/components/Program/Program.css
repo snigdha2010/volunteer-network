@@ -3,15 +3,16 @@
 
 }
 .program-image{
-  object-fit:cover;
-  width:230px;
-  height:230px;
+  object-fit: cover !important;
+  width:286;
+  height:auto;
+  
 }
-.program-card{
+/* .program-card{
   color: white;
   border-radius: 30px;
-}
-.card-body{
+} */
+/* .card-body{
     background-color: antiquewhite;
-}
+} */
 
