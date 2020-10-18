@@ -100,22 +100,22 @@ const Login = () => {
     }
     console.log(signedInUser)
     return (
-        <div className = 'text-center'>
+        <div className = 'text-center mt-4'>
            {
            !showLogin &&    
             <div>
-             <button onClick={handeGoogleSignIn}>Continue with Google</button>
-             <p>Don't have and account? <a onClick={handleCreateAccount}>Create an account</a></p>
+             <button style={{width:'310px',height:'36px' , borderRadius:'5px'}} onClick={handeGoogleSignIn}>Continue with Google</button>
+             <p>Don't have and account? <a onClick={handleCreateAccount} style={{cursor:'pointer'}}>Create an account</a></p>
              </div>
              }
-          { showLogin && <form onSubmit ={handleSubmit}>
+          { showLogin && <form className='registration-form' onSubmit ={handleSubmit}>
                {user.isSignup && <input onBlur={handleBlar} type="text" name="name" id="" placeholder='Enter your Name'/>
                } <br/>
                 <input onBlur={handleBlar} type="text" name="email" id="" placeholder='Enter your Email'/>
                 <br/>
                 <input onBlur={handleBlar} type="text" name="password" id="" placeholder='Enter your Password'/>
                 <br/>
-                <input type="submit" value ="Sing up" />
+                <input className='btn btn-primary' type="submit" value ="Sing up" />
             </form>}
            
         </div>

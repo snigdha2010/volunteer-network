@@ -4,7 +4,6 @@ import Task from '../Task/Task';
 import './EventTask.css';
 
 const EventTask = () => {
-    const [log, setLog ] = useState()
     const [ events, setEvents ] = useState([]);
     const [ programs , setPrograms ] = useState([]);
     const [signedInUser, setSignedInUser] = useContext(UserContext);
@@ -30,8 +29,7 @@ const EventTask = () => {
         })  
     }
    
-    const taskImage = [ programs,events].reduce((a, b) => b.map((c, i) => Object.assign({}, c, a[i])));
-    console.log(taskImage)
+     console.log(events)
     const handleDelete = (id) =>{
         console.log(id)
         fetch(`https://snigdha-volunteer-app.herokuapp.com/delete/${id}`,{
@@ -47,7 +45,7 @@ const EventTask = () => {
         })
     }
     return (
-        <div className = 'row event'>
+        <div className = 'row event bg-white'>
             {
                 events.map(task => <Task task = {task}
                 key = {task._id} 

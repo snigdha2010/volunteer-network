@@ -22,8 +22,8 @@ const AdminAddProgram = () => {
 
     return (
         <div className='text-center'>
-            AddProgramform
-            <form onSubmit={handleSubmit(onSubmit)}>
+            Add Event
+            <form className = 'registration-form' onSubmit={handleSubmit(onSubmit)}>
               <input name="title" defaultValue="" ref={register} placeholder='Enter tiltle' />
               <br/>
               <input name="description" ref={register({ required: true })} placeholder='Enter Designation'/>
@@ -32,7 +32,7 @@ const AdminAddProgram = () => {
               <input name="image" ref={register({ required: true })} placeholder='Input Picture'/>
               {errors.image && <span>This field is required</span>}
               <br/>
-             <input type="submit" />
+             <input className = 'btn btn-primary' value='Submit' type="submit" />
             </form>
             </div>
     );

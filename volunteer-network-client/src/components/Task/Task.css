@@ -2,10 +2,10 @@
     width: 500px;
     height: 300px;
     display: flex;
-    border: 1px solid saddlebrown;
-    background-color: white;
+    background-color: gainsboro;
     border-radius: 5px;
-    margin: 20px
+    margin: 20px;
+    color: #000;
 }
 .task img{
     width: 150px;

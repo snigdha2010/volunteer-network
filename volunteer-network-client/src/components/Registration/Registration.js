@@ -4,22 +4,24 @@ import { useForm } from "react-hook-form";
 import { useParams, useHistory } from 'react-router-dom';
 import { UserContext } from '../../App';
 import { useState } from 'react';
+import './Registration.css';
 
 const Registration = () => {
   
   const { id } = useParams({})
   const { register, handleSubmit, errors } = useForm();
   const [ signedInUser, setSignedInUser] = useContext(UserContext);
-  const [ programs, setPrograms ] = useState([]);
+  const [ program, setProgram ] = useState({});
   const history = useHistory();
   const onSubmit = data => {
+      const newData = {...data,image:program.image}
       console.log(data)
       fetch('https://snigdha-volunteer-app.herokuapp.com/addEvents',{ 
         method:'POST',
         headers:{
         "Content-type": "application/json"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(newData)
     })
       .then(res => res.json())
       .then(data =>{
@@ -31,15 +33,16 @@ const Registration = () => {
       fetch('https://snigdha-volunteer-app.herokuapp.com/programs')
       .then(res =>res.json())
       .then(data =>{
-          setPrograms(data)
+        const program = data.find(pg => pg._id == id)
+          setProgram(program)
       })
   },[])
-  const program = programs.find(pg => pg._id == id)
   console.log(program)
     return (
-        <div className='text-center'>
-            Registration
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className= 'register text-center'>
+        <div className=' mt-4'>
+           <h1 className='text-dark'>Register As volunteer</h1> 
+            <form className = 'registration-form ' onSubmit={handleSubmit(onSubmit)}>
               <input name="title" defaultValue={program && program.title} ref={register} placeholder='Full Name' />
               <br/>
               <input name="email" defaultValue={signedInUser.email}  ref={register({ required: true })} placeholder='Email'/>
@@ -54,8 +57,9 @@ const Registration = () => {
              <input name="organization" ref={register({ required: true })} defaultValue="" placeholder='Organization books at the library'/>
               {errors.organization && <span>This field is required</span>}
              <br/>
-             <input type="submit" />
+             <input  className = 'btn btn-primary 'value="registration" type='submit'/>
             </form>
+            </div>
             </div>
     );
 };

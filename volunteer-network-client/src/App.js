@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  useLocation
 } from "react-router-dom";
 import LandingPage from './components/LandingPage/LandingPage';
 import NoElementFound from './components/NoElementFound/NoElementFound';
@@ -14,16 +14,17 @@ import Login from './components/Login/Login';
 import { createContext } from 'react';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import EventTask from './components/EventTask/EventTask';
+import Header from './components/Header/Header';
 
 export const UserContext = createContext();
-
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({})
   return (
-
   <UserContext.Provider value={[signedInUser, setSignedInUser]}>
+  <div className='home'>
     <Router>
+      <Header/>
       <Switch>
         <Route exact path = '/'>
           <LandingPage/>
@@ -45,7 +46,9 @@ function App() {
         </Route>
       </Switch> 
     </Router>
+    </div>
   </UserContext.Provider>
+
   );
 }
 

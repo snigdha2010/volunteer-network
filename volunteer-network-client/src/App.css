@@ -13,15 +13,15 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+
+.home{
+  background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .6)),url(https://i.ibb.co/FJqJH4S/study-Group.png);
+  background-size: cover;
+  color: #efefef!important;
+  background-position: center;
+  min-height: fit-content;
+  height: 2600px;
 }
 
 .App-link {

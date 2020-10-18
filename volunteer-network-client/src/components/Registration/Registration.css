@@ -1,0 +1,14 @@
+.registration-form input{
+    margin: 10px;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+}
+.register{
+    border: 1px solid green;
+    width: 600px;
+    height: 600px;
+    margin:0 auto;
+    background-color: white;
+    padding:20px
+}
